@@ -1,21 +1,31 @@
 /* The following exercises were borrowed from Will Crichton's CS 242 Rust lab. */
 
-use std::collections::HashSet;
+use ordermap::OrderSet;
 
 fn main() {
     println!("Hi! Try running \"cargo test\" to run tests.");
 }
 
 fn add_n(v: Vec<i32>, n: i32) -> Vec<i32> {
-    unimplemented!()
+    let mut ret: Vec<i32> = Vec::new();
+    for item in v.iter() {
+        ret.push(item + n);
+    }
+    ret
 }
 
 fn add_n_inplace(v: &mut Vec<i32>, n: i32) {
-    unimplemented!()
+    for item in v.iter_mut() {
+        *item += n;
+    }
 }
 
 fn dedup(v: &mut Vec<i32>) {
-    unimplemented!()
+    let values: OrderSet<_> = v.iter().cloned().collect();
+    v.clear();
+    for value in values.iter() {
+        v.push(*value);
+    }
 }
 
 #[cfg(test)]
